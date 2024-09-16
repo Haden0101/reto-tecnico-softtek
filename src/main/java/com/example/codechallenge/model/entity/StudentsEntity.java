@@ -22,11 +22,17 @@ public class StudentsEntity {
     private String lastName;
     private Boolean status;
     private Integer age;
+    private Integer credits;
+    private Integer semester;
+    private Double average;
 
     public StudentsEntity(StudentsRequest request) {
         this.firstName = request.getFirstName();
         this.lastName = request.getLastName();
         this.status = true;
         this.age = request.getAge();
+        this.credits = request.getCredits();
+        this.semester = request.getSemester();
+        this.average = request.getAverage();
     }
 }

@@ -19,12 +19,15 @@ public class StudentsMapper {
         response.setLastName(request.getLastName());
         response.setStatus(true);
         response.setAge(request.getAge());
+        response.setCredits(request.getCredits());
+        response.setSemester(request.getSemester());
+        response.setAverage(request.getAverage());
         return response;
     }
 
     /**
      * Metodo que convierte la Entidad al Response.
-     * @param studentsEntity {@link StudentsEntity}
+     * @param  studentsEntity {@link StudentsEntity}
      * @return {@link StudentsResponse}
      */
     public static StudentsResponse mapResponse(StudentsEntity studentsEntity) {
@@ -34,6 +37,9 @@ public class StudentsMapper {
         response.setLastName(studentsEntity.getLastName());
         response.setStatus(studentsEntity.getStatus());
         response.setAge(studentsEntity.getAge());
+        response.setCredits(studentsEntity.getCredits());
+        response.setSemester(studentsEntity.getSemester());
+        response.setAverage(studentsEntity.getAverage());
         return response;
     }
 }

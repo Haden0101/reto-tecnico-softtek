@@ -13,5 +13,6 @@ public interface StudentsService {
     void save(StudentsRequest request);
     List<StudentsResponse> users();
     StudentsResponse find(String fullName);
+    StudentsResponse update(Integer id, StudentsRequest request);
 
 }

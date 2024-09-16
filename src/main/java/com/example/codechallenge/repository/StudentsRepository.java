@@ -11,4 +11,5 @@ public interface StudentsRepository extends JpaRepository<StudentsEntity, Intege
     @Query(value = "SELECT * FROM students_entity WHERE (LOWER(first_name) LIKE LOWER(CONCAT('%', :name, '%')) OR LOWER(last_name) LIKE LOWER(CONCAT('%', :name, '%'))) OR LOWER(CONCAT(first_name, ' ', last_name)) LIKE LOWER(CONCAT('%', :name, '%'))", nativeQuery = true)
     StudentsEntity findStudentsByFirstNameOrLastNameIgnoreCase(@Param("name") String name);
 
+    StudentsEntity findStudentsEntityById(Integer id);
 }

@@ -4,6 +4,7 @@ import com.example.codechallenge.model.api.StudentsRequest;
 import com.example.codechallenge.model.api.StudentsResponse;
 import com.example.codechallenge.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
@@ -26,10 +27,19 @@ public class StudentsController {
         return service.users();
     }
 
-    @GetMapping(path = "/findUserByNameOrFullName")
+    @GetMapping("/findUserByNameOrFullName")
     public StudentsResponse find(
             @RequestParam("name") String fullName) {
         return service.find(fullName);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<StudentsResponse> updateStudent(
+            @PathVariable Integer id,
+            @RequestBody StudentsRequest request) {
+
+        StudentsResponse response = service.update(id, request);
+        return ResponseEntity.ok(response);
     }
 
 }

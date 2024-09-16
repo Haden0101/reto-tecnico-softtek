@@ -18,5 +18,12 @@ public class StudentsRequest {
     private Boolean status;
     @NonNull
     private Integer age;
+    @NonNull
+    private Integer credits;
+    @NonNull
+    private Integer semester;
+    @NonNull
+    private Double average;
+
 
 }
