@@ -1,0 +1,112 @@
+1. Creación e insertado para la tabla EVAL_TIP_GESTION
+
+-- Creación de la tabla EVAL_TIP_GESTION
+CREATE TABLE EVAL_TIP_GESTION (
+    n_id_tipo_gestion NUMBER PRIMARY KEY,
+    c_descripcion VARCHAR2(100),
+    n_peso NUMBER,
+    n_estado NUMBER not null,
+    c_usu_registro VARCHAR(20),
+    d_fec_registro DATE,
+
+);
+
+-- Insertado de datos en la tabla EVAL_TIP_GESTION
+INSERT INTO EVAL_TIP_GESTION (n_id_tipo_gestion, c_descripcion, n_peso, n_estado, c_usu_registro, d_fec_registro) VALUES (3, 'Gestion Vida', 65, 1, 'GNOAIN', 19/09/2024 21:35:00);
+INSERT INTO EVAL_TIP_GESTION (n_id_tipo_gestion, c_descripcion, n_peso, n_estado, c_usu_registro, d_fec_registro) VALUES (4, 'Gestion MC', 65, 1, 'GNOAIN', 19/09/2024 21:35:00);
+INSERT INTO EVAL_TIP_GESTION (n_id_tipo_gestion, c_descripcion, n_peso, n_estado, c_usu_registro, d_fec_registro) VALUES (5, 'Contracargo Vida', 65, 1, 'GNOAIN', 19/09/2024 21:35:00);
+INSERT INTO EVAL_TIP_GESTION (n_id_tipo_gestion, c_descripcion, n_peso, n_estado, c_usu_registro, d_fec_registro) VALUES (6, 'Contracargo MC', 65, 1, 'GNOAIN', 19/09/2024 21:35:00);
+
+
+
+2. Creación e insertado para la tabla EVAL_REQ_DETALLE
+
+-- Creación de la tabla EVAL_REQ_DETALLE
+CREATE TABLE EVAL_REQ_DETALLE (
+    n_id_req_detalle NUMBER PRIMARY KEY,
+    n_id_rq NUMBER,
+    c_cod_autorizacion VARCHAR(6),
+    d_fec_trx DATE,
+    n_mto DOUBLE,
+    c_usu_registro VARCHAR(20),
+    d_fec_registro DATE,
+    n_id_tipo_gestion NUMBER,
+    d_fec_gestion DATE
+);
+
+-- Insertar datos en la tabla EVAL_REQ_DETALLE
+INSERT INTO EVAL_REQ_DETALLE (
+    n_id_req_detalle, n_id_rq, c_cod_autorizacion, d_fec_trx, n_mto,
+    c_usu_registro, d_fec_registro, n_id_tipo_gestion, d_fec_gestion
+) VALUES (
+    1, 1001, 'AUTH01', TO_DATE('2024-09-01', 'YYYY-MM-DD'), 8,
+    'user1', TO_DATE('2024-09-01', 'YYYY-MM-DD'), NULL, NULL
+);
+
+INSERT INTO EVAL_REQ_DETALLE (
+    n_id_req_detalle, n_id_rq, c_cod_autorizacion, d_fec_trx, n_mto,
+    c_usu_registro, d_fec_registro, n_id_tipo_gestion, d_fec_gestion
+) VALUES (
+    2, 1002, 'AUTH02', TO_DATE('2024-09-05', 'YYYY-MM-DD'), 20,
+    'user2', TO_DATE('2024-09-05', 'YYYY-MM-DD'), NULL, NULL
+);
+
+INSERT INTO EVAL_REQ_DETALLE (
+    n_id_req_detalle, n_id_rq, c_cod_autorizacion, d_fec_trx, n_mto,
+    c_usu_registro, d_fec_registro, n_id_tipo_gestion, d_fec_gestion
+) VALUES (
+    3, 1003, 'AUTH03', TO_DATE('2024-09-10', 'YYYY-MM-DD'), 50,
+    'user3', TO_DATE('2024-09-10', 'YYYY-MM-DD'), NULL, NULL
+);
+
+INSERT INTO EVAL_REQ_DETALLE (
+    n_id_req_detalle, n_id_rq, c_cod_autorizacion, d_fec_trx, n_mto,
+    c_usu_registro, d_fec_registro, n_id_tipo_gestion, d_fec_gestion
+) VALUES (
+    4, 1004, 'AUTH04', TO_DATE('2024-09-15', 'YYYY-MM-DD'), 120,
+    'user4', TO_DATE('2024-09-15', 'YYYY-MM-DD'), NULL, NULL
+);
+
+
+
+3. Procedimiento almacenado dentro de un paquete
+
+-- Creación del paquete PKG_EVAL_ASIGNACION
+CREATE OR REPLACE PACKAGE PKG_EVAL_ASIGNACION AS
+    PROCEDURE ASIGNAR_TIPO_GESTION;
+END PKG_EVAL_ASIGNACION;
+/
+
+-- Creación del cuerpo del paquete PKG_EVAL_ASIGNACION
+CREATE OR REPLACE PACKAGE BODY PKG_EVAL_ASIGNACION AS
+    PROCEDURE ASIGNAR_TIPO_GESTION IS
+        CURSOR c_eval_req_detalle IS
+            SELECT n_id_req_detalle, n_mto
+            FROM EVAL_REQ_DETALLE;
+
+        v_tipo_gestion NUMBER;
+        v_id_req_detalle NUMBER;
+        v_mto NUMBER;
+    BEGIN
+        FOR r IN c_eval_req_detalle LOOP
+            v_id_req_detalle := r.n_id_req_detalle;
+            v_mto := r.n_mto;
+
+            IF v_mto <= 10 THEN
+                v_tipo_gestion := 6;
+            ELSIF v_mto <= 35 THEN
+                v_tipo_gestion := 5;
+            ELSIF v_mto <= 100 THEN
+                v_tipo_gestion := 4;
+            ELSE
+                v_tipo_gestion := 3;
+            END IF;
+
+            UPDATE EVAL_REQ_DETALLE
+            SET n_id_tipo_gestion = v_tipo_gestion,
+                d_fec_gestion = SYSDATE
+            WHERE n_id_req_detalle = v_id_req_detalle;
+        END LOOP;
+    END ASIGNAR_TIPO_GESTION;
+END PKG_EVAL_ASIGNACION;
+/
