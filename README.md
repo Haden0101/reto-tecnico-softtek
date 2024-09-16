@@ -24,9 +24,9 @@
   </tr>
   <tr>
     <td>UPDATE</td>
-    <td>/api/v1/student/update</td>
+    <td>/api/v1/student/update/{id}</td>
     <td>SI</td>  
-    <td>id_student</td>
+    <td>id</td>
     <td>Tipo de la busqueda (ID).</td>
   </tr>
   <tr>
@@ -56,6 +56,20 @@
   "credits": 12,
   "semester": 2,
   "average": 14.5
+}
+```
+
+## BODY - UPDATE
+
+```json
+{
+    "firstName": "Isaias V",
+    "lastName": "Quiroz C",
+    "status": true,
+    "age": "12",
+    "credits": 16,
+    "semester": 2,
+    "average": 16.5
 }
 ```
 
