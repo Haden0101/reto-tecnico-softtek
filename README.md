@@ -1,4 +1,4 @@
-# Code Challenge
+# Code Challenge - Softtek
 
 <table>
   <tr>
@@ -10,28 +10,38 @@
   </tr>
   <tr>
     <td>POST</td>
-    <td>/api/v1/employees</td>
+    <td>/api/v1/student</td>
     <td>NO</td>
     <td></td>
-    <td>Crear nuevo empleado.</td>
+    <td>Crear nuevo estudiante</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>/api/v1/employees</td>
+    <td>/api/v1/student</td>
     <td>NO</td>
     <td></td>
-    <td>Obtener todos los empleados.</td>
+    <td>Obtener todos los estudiantes</td>
   </tr>
   <tr>
-    <td rowspan="2">GET</td>
-    <td rowspan="2">/api/v1/employees/find</td>
-    <td rowspan="2">SI</td>  
-    <td>type</td>
-    <td>Tipo de la busqueda (EMAIL o PHONE).</td>
+    <td>UPDATE</td>
+    <td>/api/v1/student/update</td>
+    <td>SI</td>  
+    <td>id_student</td>
+    <td>Tipo de la busqueda (ID).</td>
   </tr>
   <tr>
-    <td>value</td>
-    <td>Valor de la busqueda por el tipo seleccionado.</td>
+    <td>GET</td>
+    <td>/api/v1/student/find</td>
+    <td>SI</td>  
+    <td>name</td>
+    <td>Tipo de la busqueda (fullName).</td>
+  </tr>
+  <tr>
+    <td>DELETE</td>
+    <td>/api/v1/student/delete</td>
+    <td>SI</td>  
+    <td>id_student</td>
+    <td>Tipo de la busqueda (ID).</td>
   </tr>
 </table>
 
