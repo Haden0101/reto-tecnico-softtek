@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"firstName\": \"Isaias\",\r\n  \"lastName\": \"Quiroz\",\r\n  \"status\": \"true\",\r\n  \"age\": \"12\"\r\n}",
+					"raw": "{\r\n  \"firstName\": \"Isaias\",\r\n  \"lastName\": \"Quiroz\",\r\n  \"status\": \"true\",\r\n  \"age\": \"12\"\r\n  \"credits\": \"15\"\r\n  \"semester\": \"2\"\n  \"average\": \"14.5\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -58,6 +58,15 @@
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Isaias V\",\r\n  \"lastName\": \"Quiroz C\",\r\n  \"status\": \"true\",\r\n  \"age\": \"12\"\r\n  \"credits\": \"15\"\r\n  \"semester\": \"2\"\n  \"average\": \"16.5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{url}}/api/v1/students?name",
 					"host": [
@@ -77,6 +86,62 @@
 						{
 							"key": "value",
 							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Alumno",
+			"request": {
+				"method": "UPDATE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/students/update/{id}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"students",
+						"update",
+						"{id}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"description": "[ID]"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Alumno",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/students/delete/{id}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"students",
+						"delete",
+						"{id}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"description": "[ID]"
 						}
 					]
 				}
