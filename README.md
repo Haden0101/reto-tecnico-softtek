@@ -45,4 +45,19 @@
   </tr>
 </table>
 
-### [postman collection](tools/Code-Challenge.postman_collection.json)# reto-tecnico-softtek
+## BODY - CREATE
+
+```json
+{
+  "firstName": "Isaias",
+  "lastName": "Quiroz",
+  "status": true,
+  "age": "12",
+  "credits": 12,
+  "semester": 2,
+  "average": 14.5
+}
+```
+
+### [postman collection](tools/Code-Challenge.postman_collection.json) # reto-tecnico-softtek
+
