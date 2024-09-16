@@ -14,5 +14,6 @@ public interface StudentsService {
     List<StudentsResponse> users();
     StudentsResponse find(String fullName);
     StudentsResponse update(Integer id, StudentsRequest request);
+    void delete(Integer id);
 
 }

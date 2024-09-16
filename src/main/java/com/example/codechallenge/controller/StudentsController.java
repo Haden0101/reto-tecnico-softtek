@@ -42,4 +42,9 @@ public class StudentsController {
         return ResponseEntity.ok(response);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Integer id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

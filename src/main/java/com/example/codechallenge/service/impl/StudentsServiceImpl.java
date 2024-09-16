@@ -89,4 +89,23 @@ public class StudentsServiceImpl implements StudentsService {
         return StudentsMapper.mapResponse(updatedEntity);
     }
 
+    /**
+     * Método para eliminar los datos del estudiante.
+     *
+     * @param id ID del estudiante que se va a buscar para la eliminación.
+     * @return {@link <Void>} Retorna una respuesta HTTP sin contenido (204 No Content) si la eliminación fue exitosa.
+     * @throws ResponseExceptionDefault si el estudiante no existe.
+     */
+    @Override
+    public void delete(Integer id) {
+        StudentsEntity entity = repository.findStudentsEntityById(id);
+
+        if (entity == null) {
+            throw new ResponseExceptionDefault("El usuario ingresado no existe en los registros");
+        }
+
+        repository.delete(entity);
+    }
+
+
 }
