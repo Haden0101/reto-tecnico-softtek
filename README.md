@@ -1,4 +1,7 @@
 # Code Challenge - Softtek
+### Ruta postman : /tools/Code-Challenge.postman_collection.json
+
+## Tabla de EndPoints
 
 <table>
   <tr>
